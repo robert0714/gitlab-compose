@@ -59,18 +59,20 @@ services:
     - GITLAB_SECRETS_SECRET_KEY_BASE=long-and-random-alphanumeric-string
     - GITLAB_SECRETS_OTP_KEY_BASE=long-and-random-alphanumeric-string
     - LDAP_ENABLED=true
-    - LDAP_LABEL=AD登入
+    - LDAP_LABEL=資拓AD登入
     - LDAP_ACTIVE_DIRECTORY=true
-    - LDAP_HOST= 
+    - LDAP_HOST=192.168.2.12
     - LDAP_UID=sAMAccountName
     - LDAP_BIND_DN=iisildap@iead.local
-    - LDAP_PASS=
+    - LDAP_PASS=iisi@1qaz2wsx
     - LDAP_ALLOW_USERNAME_OR_EMAIL_LOGIN=true
     - LDAP_BASE=DC=iead,DC=local
     - LDAP_USER_ATTRIBUTE_USERNAME=sAMAccountName
     - LDAP_USER_ATTRIBUTE_MAIL=mail
     - LDAP_USER_ATTRIBUTE_NAME=name
     - LDAP_USER_FILTER=objectClass=person
+    - NGINX_REAL_IP_TRUSTED_ADDRESSES=192.168.57.21
+
 
 
 

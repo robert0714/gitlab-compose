@@ -71,6 +71,8 @@ services:
     - LDAP_USER_ATTRIBUTE_MAIL=mail
     - LDAP_USER_ATTRIBUTE_NAME=name
     - LDAP_USER_FILTER=objectClass=person
+    - NGINX_REAL_IP_TRUSTED_ADDRESSES=192.168.57.21
+
 
 
 
