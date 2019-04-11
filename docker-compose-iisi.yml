@@ -61,7 +61,7 @@ services:
     - LDAP_ENABLED=true
     - LDAP_LABEL=AD登入
     - LDAP_ACTIVE_DIRECTORY=true
-    - LDAP_HOST= 
+    - LDAP_HOST=
     - LDAP_UID=sAMAccountName
     - LDAP_BIND_DN=iisildap@iead.local
     - LDAP_PASS=
