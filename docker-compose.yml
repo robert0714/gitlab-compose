@@ -4,7 +4,7 @@ services:
   redis:
     container_name: docker-gitlab-redis
     restart: always
-    image: sameersbn/redis:3.0.6
+    image: sameersbn/redis:5.0.9
     sysctls:
       net.core.somaxconn: '511'
     command:
@@ -16,19 +16,19 @@ services:
   postgresql:
     container_name: docker-gitlab-postgresql
     restart: always
-    image: sameersbn/postgresql:9.6-2
+    image: sameersbn/postgresql:11-20200524
     volumes:
     - $PWD/docker-gitlab-data/postgresql:/var/lib/postgresql:Z
     environment:
     - DB_USER=gitlab
     - DB_PASS=password
     - DB_NAME=gitlabhq_production
-    - DB_EXTENSION=pg_trgm
+    - DB_EXTENSION=pg_trgm,btree_gist
     - TZ=Asia/Taipei
   gitlab:
     container_name: docker-gitlab
     restart: always
-    image: sameersbn/gitlab:9.5.5
+    image: sameersbn/gitlab:13.3.4
     depends_on:
     - redis
     - postgresql
@@ -36,6 +36,12 @@ services:
     - "10081:80"
     volumes:
     - $PWD/docker-gitlab-data/gitlab:/home/git/data:Z
+    healthcheck:
+      test: ["CMD", "/usr/local/sbin/healthcheck"]
+      interval: 5m
+      timeout: 10s
+      retries: 3
+      start_period: 5m
     environment:
     - DEBUG=false
     - GITLAB_RELATIVE_URL_ROOT=/gitlab
