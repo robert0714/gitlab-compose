@@ -4,7 +4,7 @@ services:
   redis:
     container_name: docker-gitlab-redis
     restart: always
-    image: sameersbn/redis:5.0.9
+    image: redis:5.0.9
     sysctls:
       net.core.somaxconn: '511'
     command:
@@ -41,7 +41,6 @@ services:
       interval: 5m
       timeout: 10s
       retries: 3
-      start_period: 5m
     environment:
     - DEBUG=false
     - GITLAB_RELATIVE_URL_ROOT=/gitlab
@@ -64,6 +63,7 @@ services:
     - GITLAB_SECRETS_DB_KEY_BASE=long-and-random-alphanumeric-string
     - GITLAB_SECRETS_SECRET_KEY_BASE=long-and-random-alphanumeric-string
     - GITLAB_SECRETS_OTP_KEY_BASE=long-and-random-alphanumeric-string
+    - GITLAB_SIGNUP_ENABLED=false
     - LDAP_ENABLED=true
     - LDAP_LABEL=資拓AD登入
     - LDAP_ACTIVE_DIRECTORY=true
